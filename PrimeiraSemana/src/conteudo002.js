@@ -83,4 +83,94 @@ var simple = valor => (valor > 15 ? "SIM" : "NAO");
 console.log(simple(16));
 console.log("");
 
+//Spread Operators
+var squirrelNames = [
+  "Lady Nutkins",
+  "Squirrely McSquirrel",
+  "Sergeant Squirrelbottom"
+];
+var bunnyNames = ["Lady FluffButt", "Brigadier Giant"];
+var animalNames = ["Lady Butt", squirrelNames, "Juicy Biscuiteer", bunnyNames];
+
+// Para achatar esse array, precisamos de outro passo:
+var flattened = [].concat.apply([], animalNames);
+console.log(flattened);
+console.log("");
+
+//Math.max
+var values = [25, 50, 75, 100];
+console.log(Math.max(25, 50, 75, 100)); // => 100
+console.log(Math.max(...values)); // => 100
+console.log("");
+
+function myFunction(x, y, z) {
+  console.log("Somando: ", x + y + z);
+}
+var args = [1, 2, 3];
+myFunction(...args);
+console.log("");
+
+//Generators
+function* callMe() {
+  yield "1";
+  yield "…and a 2";
+  yield "…and a 3";
+  return;
+  yield "this won’t print";
+}
+var anAction = callMe();
+console.log(anAction.next());
+console.log(anAction.next());
+console.log(anAction.next());
+console.log(anAction.next());
+console.log(anAction.next());
+console.log("");
+
+//Generators are super useful when it comes to asynchronous functions calls.
+// Bunny precisa fazer compras para a festa de aniversário de sua amiga.
+var groceries = "";
+
+// Vamos criar três funções que precisam ser chamadas para o Bunny.
+var buyCarrots = function() {
+  groceries += "carrots";
+};
+
+var buyGrass = function() {
+  groceries += ", grass";
+};
+
+var buyApples = function() {
+  groceries += ", and apples";
+};
+
+// Bunny está com pressa, então você tem que comprar as compras dentro de um certo período de tempo!
+// Este é um exemplo de quando você usaria um timer com um Generator.
+// Primeiro armazene as funções dentro de um array:
+var buyGroceries = [buyCarrots, buyGrass, buyApples];
+
+// Em seguida, percorra a matriz dentro de um Generator:
+// Existem alguns problemas ao fazer isso com o forEach, recriar isso usando um loop for.
+function* loopThrough(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    yield arr[i]();
+  }
+}
+
+// adiciona a matriz de três funções à função loopThrough.
+var functions = loopThrough(buyGroceries);
+
+// Por fim, defina a hora que você deseja pausar antes da próxima chamada de função
+// usando o método setInterval (chama uma função / expressão após um tempo definido específico).
+var timedGroceryHunt = setInterval(function() {
+  var functionCall = functions.next();
+  if (!functionCall.done) {
+    console.log(`Bunny bought ${groceries}!`);
+  } else {
+    clearInterval(timedGroceryHunt);
+    console.log(
+      `Thank you! Bunny bought all the ${groceries} in time thanks to your help!`
+    );
+  }
+}, 1000);
+
 //node src/conteudo002.js
