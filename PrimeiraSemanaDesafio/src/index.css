@@ -27,3 +27,16 @@ mark {
 .Navbar-logo {
   height: 3rem;
 }
+
+.RecipeItem a {
+  color: #495057;
+}
+
+.RecipeItem a:hover {
+  color: #495057;
+  text-decoration: none;
+}
+
+.RecipeItem .card:hover {
+  border: 2px solid #495057;
+}
