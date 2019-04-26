@@ -11,8 +11,8 @@
   flex-wrap: wrap;
 }
 
-.row > div[class*='col-'] {
- display: flex;
+.row > div[class*="col-"] {
+  display: flex;
 }
 
 .card {
@@ -28,15 +28,7 @@ mark {
   height: 3rem;
 }
 
-.RecipeItem a {
-  color: #495057;
-}
-
-.RecipeItem a:hover {
-  color: #495057;
-  text-decoration: none;
-}
-
-.RecipeItem .card:hover {
-  border: 2px solid #495057;
+.imgRecipe {
+  height: 80px;
+  width: 80px;
 }

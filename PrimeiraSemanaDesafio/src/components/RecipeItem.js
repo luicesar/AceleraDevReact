@@ -1,22 +1,5 @@
-// import React from 'react'
-
-// const RecipeItem = () => (
-//     <div className="col-sm-3 mt-4">
-//         <div className="card">
-//             <img className="card-img-top img-fluid" src="https://via.placeholder.com/350x300" alt="" />
-//             <div className="card-body">
-//                 <h5 className="card-title">TITLE HERE</h5>
-//                 <p className="card-text">
-//                     <strong>Ingredients: </strong>INGREDIENTS HERE
-//                 </p>
-//             </div>
-//         </div>
-//     </div>
-// )
-
-// export default RecipeItem;
-
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const HighlighMark = ({ title = "", search = "" }) => {
   if (search === "") return <span>{title}</span>;
@@ -41,11 +24,23 @@ const HighlighMark = ({ title = "", search = "" }) => {
 const RecipeItem = ({ textSearch, item }) => (
   <div className="col-sm-3 mt-4">
     <div className="card">
-      <img
-        className="card-img-top img-fluid"
-        src={item ? item.thumbnail : ""}
-        alt=""
-      />
+      <Link
+        to={{
+          pathname: `/recipe/${item.title}`,
+          state: { recipe: item }
+        }}
+      >
+        <img
+          className="card-img-top img-fluid"
+          src={item ? item.thumbnail : ""}
+          alt=""
+        />
+      </Link>
+
+      <NavLink to="/faq" activeClassName="selected">
+        FAQs
+      </NavLink>
+
       <div className="card-body">
         <h5 className="card-title">
           <HighlighMark

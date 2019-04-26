@@ -1,20 +1,15 @@
-import React from 'react';
-import { mount, shallow } from 'enzyme';
-import App from './App';
+import React from "react";
+import { mount, shallow } from "enzyme";
+import App from "./App";
+import { MemoryRouter } from "react-router-dom";
 
-describe('App', () => {
-  test('Should be App', () => {
-    const wrapper = mount(<App />);
-    expect(wrapper.is('App')).toBeTruthy();
-  });
-
-  test('Should be state', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.state('searchString')).toEqual('');
-  });
-
-  test('Should be Itens', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.state('recipes').length).toEqual(20);
+describe("App", () => {
+  test("Should be App", () => {
+    const wrapper = mount(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    expect(wrapper.exists("App")).toBeTruthy();
   });
 });
