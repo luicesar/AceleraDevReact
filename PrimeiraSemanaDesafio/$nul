@@ -1,0 +1,106 @@
+ PASS  src\components\RecipeItem.test.js (6.155s)
+ PASS  src\components\Home.test.js (6.567s)
+ PASS  src\components\RecipePage.test.js
+ FAIL  src\__tests__\validation.test.js (6.724s)
+  ● App › Render recipes with url filter
+
+    expect(received).toEqual(expected)
+    
+    Expected value to equal:
+      1
+    Received:
+      2
+      
+      at Object.test (src/__tests__/validation.test.js:45:51)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Navbar shows correct filter
+
+    expect(received).toEqual(expected)
+    
+    Expected value to equal:
+      "other"
+    Received:
+      ""
+      
+      at Object.test (src/__tests__/validation.test.js:55:60)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Change navbar value change url
+
+    expect(received).toEqual(expected)
+    
+    Expected value to equal:
+      "tes"
+    Received:
+      undefined
+    
+    Difference:
+    
+      Comparing two different types of values. Expected string but received undefined.
+      
+      at Object.test (src/__tests__/validation.test.js:65:61)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Click on recipe redirect to the right place
+
+    Method “props” is only meant to be run on a single node. 2 found instead.
+      
+      at ReactWrapper.single (node_modules/enzyme/build/ReactWrapper.js:1638:17)
+      at ReactWrapper.props (node_modules/enzyme/build/ReactWrapper.js:976:21)
+      at ReactWrapper.prop (node_modules/enzyme/build/ReactWrapper.js:1170:21)
+      at Object.test (src/__tests__/validation.test.js:79:75)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Render recipe in recipe route
+
+    Method “props” is only meant to be run on a single node. 0 found instead.
+      
+      at ReactWrapper.single (node_modules/enzyme/build/ReactWrapper.js:1638:17)
+      at ReactWrapper.props (node_modules/enzyme/build/ReactWrapper.js:976:21)
+      at Object.test (src/__tests__/validation.test.js:90:43)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Render to not  rend recipe in recipe route
+
+    Method “props” is only meant to be run on a single node. 0 found instead.
+      
+      at ReactWrapper.single (node_modules/enzyme/build/ReactWrapper.js:1638:17)
+      at ReactWrapper.props (node_modules/enzyme/build/ReactWrapper.js:976:21)
+      at Object.test (src/__tests__/validation.test.js:101:43)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+ PASS  src\components\Navbar.test.js
+  ● Console
+
+    console.error node_modules\prop-types\checkPropTypes.js:19
+      Warning: Failed prop type: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
+          in input (at Navbar.js:23)
+          in div (at Navbar.js:22)
+          in nav (at Navbar.js:14)
+          in Navbar (created by Route)
+          in Route (created by withRouter(Navbar))
+          in withRouter(Navbar) (at Navbar.test.js:10)
+          in Router (created by MemoryRouter)
+          in MemoryRouter (created by WrapperComponent)
+          in WrapperComponent
+
+ PASS  src\components\App.test.js
+
+Test Suites: 1 failed, 5 passed, 6 total
+Tests:       6 failed, 6 passed, 12 total
+Snapshots:   0 total
+Time:        11.255s
+Ran all test suites.

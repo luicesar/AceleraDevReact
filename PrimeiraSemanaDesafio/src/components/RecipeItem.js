@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const HighlighMark = ({ title = "", search = "" }) => {
   if (search === "") return <span>{title}</span>;
@@ -26,7 +27,7 @@ const RecipeItem = ({ textSearch, item }) => (
     <div className="card">
       <Link
         to={{
-          pathname: `/recipe/${item.title}`,
+          pathname: `/recipe/${item ? item.title : ""}`,
           state: { recipe: item }
         }}
       >
@@ -59,5 +60,14 @@ const RecipeItem = ({ textSearch, item }) => (
     </div>
   </div>
 );
+
+RecipeItem.propTypes = {
+  textSearch: PropTypes.string,
+  item: PropTypes.shape({
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    ingredients: PropTypes.string
+  })
+};
 
 export default RecipeItem;

@@ -35,8 +35,9 @@ const Navbar = ({ value, onchangeInput, location, history }) => {
 };
 
 Navbar.propTypes = {
-  match: PropTypes.object.isRequired,
-  searchString: PropTypes.string
+  match: PropTypes.object,
+  searchString: PropTypes.string,
+  onchangeInput: PropTypes.func
 };
 
 export default withRouter(Navbar);
