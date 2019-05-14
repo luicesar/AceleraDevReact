@@ -1,0 +1,98 @@
+ PASS  src\components\RecipePage.test.js (14.046s)
+ PASS  src\components\CommentsBlock.test.js (14.071s)
+ PASS  src\components\Home.test.js
+ PASS  src\components\App.test.js
+ FAIL  src\__tests__\validation.test.js (18.368s)
+  ● App › Test Login success
+
+    Method “simulate” is only meant to be run on a single node. 0 found instead.
+      
+      at ReactWrapper.single (node_modules/enzyme/build/ReactWrapper.js:1638:17)
+      at ReactWrapper.simulate (node_modules/enzyme/build/ReactWrapper.js:916:21)
+      at Object.test (src/__tests__/validation.test.js:43:54)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Test Login error
+
+    Method “simulate” is only meant to be run on a single node. 0 found instead.
+      
+      at ReactWrapper.single (node_modules/enzyme/build/ReactWrapper.js:1638:17)
+      at ReactWrapper.simulate (node_modules/enzyme/build/ReactWrapper.js:916:21)
+      at Object.test (src/__tests__/validation.test.js:57:54)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Test Register success
+
+    Method “simulate” is only meant to be run on a single node. 0 found instead.
+      
+      at ReactWrapper.single (node_modules/enzyme/build/ReactWrapper.js:1638:17)
+      at ReactWrapper.simulate (node_modules/enzyme/build/ReactWrapper.js:916:21)
+      at Object.test (src/__tests__/validation.test.js:71:54)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Create comment logged user
+
+    Method “props” is only meant to be run on a single node. 0 found instead.
+      
+      at ReactWrapper.single (node_modules/enzyme/build/ReactWrapper.js:1638:17)
+      at ReactWrapper.props (node_modules/enzyme/build/ReactWrapper.js:976:21)
+      at Object.test (src/__tests__/validation.test.js:95:55)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Comment disabled non logged user
+
+    Method “props” is only meant to be run on a single node. 0 found instead.
+      
+      at ReactWrapper.single (node_modules/enzyme/build/ReactWrapper.js:1638:17)
+      at ReactWrapper.props (node_modules/enzyme/build/ReactWrapper.js:976:21)
+      at Object.test (src/__tests__/validation.test.js:113:55)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Render comments
+
+    expect(received).toEqual(expected)
+    
+    Expected value to equal:
+      2
+    Received:
+      0
+      
+      at Object.test (src/__tests__/validation.test.js:136:63)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ● App › Render comments with remove button
+
+    expect(received).toEqual(expected)
+    
+    Expected value to equal:
+      2
+    Received:
+      0
+      
+      at Object.test (src/__tests__/validation.test.js:164:63)
+          at new Promise (<anonymous>)
+      at Promise.resolve.then.el (node_modules/p-map/index.js:46:16)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+
+ PASS  src\components\Login.test.js
+ PASS  src\components\RecipeItem.test.js
+ PASS  src\components\Navbar.test.js
+ PASS  src\components\User.test.js
+
+Test Suites: 1 failed, 8 passed, 9 total
+Tests:       7 failed, 8 passed, 15 total
+Snapshots:   0 total
+Time:        36.026s
+Ran all test suites.
