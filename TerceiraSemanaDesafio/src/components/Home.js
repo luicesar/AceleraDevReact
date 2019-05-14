@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import RecipeItem from "./RecipeItem";
 import Navbar from "./Navbar";
-import { getRecipesByName } from "../services/recipes";
+import { getRecipesByName, getRecipesByIngredients } from "../services/recipes";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this._isMounted = false;
-    this.state = { searchString: "", recipes: [] };
+    this.state = { searchString: "", recipes: [], page: 1, ingredientsFilter: "" };
   }
 
   componentDidMount() {
@@ -20,17 +20,40 @@ class Home extends Component {
     this._isMounted = false;
   }
 
-  handleGetRecipesByName(value) {
-    getRecipesByName(value)
+  async handleGetRecipesByName(value) {
+    await getRecipesByName(value)
       .then(response => {
         if (this._isMounted) {
           this.setState({ recipes: response.results });
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log("Error: ", err);
       });
   }
+
+
+  handleGetRecipesByIngredients = async (page, pagination) => {
+
+    const {
+      match: { params: { searchString } } = {}
+    } = this.props;
+
+    const { ingredientsFilter } = this.state;
+
+    if (pagination === "prev")
+      this.setState({ page: page - 1 });
+    else
+      this.setState({ page: page + 1 });
+
+    await getRecipesByIngredients(searchString, ingredientsFilter, this.state.page)
+      .then(response => {
+        this.setState({ recipes: response.results });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   onchangeInputNav = e => {
     const value = e.target.value.toLowerCase();
@@ -49,22 +72,27 @@ class Home extends Component {
         x.ingredients.toLowerCase().includes(value)
     );
 
-    this.setState({ recipes: recipesFilter });
+    let ingredientsFilter = recipesFilter.length ? recipesFilter[0].ingredients : "";
+
+    this.setState({ recipes: recipesFilter, ingredientsFilter: ingredientsFilter });
   }
 
   render() {
-    let { searchString, recipes } = this.state;
+    let { searchString, recipes, page } = this.state;
 
     if (this.props.match && this.props.match.params)
       searchString = this.props.match.params.searchString;
 
+    if (Number(page) <= 1)
+      page = 1;
+
     let recipesFilter = !searchString
       ? recipes
       : recipes.filter(
-          x =>
-            x.title.toLowerCase().includes(searchString) ||
-            x.ingredients.toLowerCase().includes(searchString)
-        );
+        x =>
+          x.title.toLowerCase().includes(searchString) ||
+          x.ingredients.toLowerCase().includes(searchString)
+      );
 
     return (
       <div>
@@ -84,12 +112,12 @@ class Home extends Component {
             <nav>
               <ul className="pagination">
                 <li className="page-item">
-                  <button id="prev" className="page-link" href="#">
+                  <button id="prev" className="page-link" href="#" onClick={() => this.handleGetRecipesByIngredients(page, 'prev')}>
                     Previous
                   </button>
                 </li>
                 <li className="page-item">
-                  <button id="next" className="page-link" href="#">
+                  <button id="next" className="page-link" href="#" onClick={() => this.handleGetRecipesByIngredients(page, 'next')}>
                     Next
                   </button>
                 </li>

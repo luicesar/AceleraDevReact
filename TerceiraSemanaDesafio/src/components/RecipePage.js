@@ -13,11 +13,6 @@ class RecipePage extends Component {
       },
       similarRecipes: []
     };
-
-    this.handleGetRecipe = this.handleGetRecipe.bind(this);
-    this.handleGetRecipesByIngredients = this.handleGetRecipesByIngredients.bind(
-      this
-    );
   }
 
   componentDidMount() {
@@ -40,16 +35,13 @@ class RecipePage extends Component {
     }
   }
 
-  handleGetRecipe = () => {
-    this.setState({ recipe: this.props.location.state.recipe });
-    console.log("recipe: ", this.state.recipe);
-    console.log(
-      "this.props.location.state.recipe: ",
-      this.props.location.state.recipe
-    );
+  handleGetRecipe = async () => {
+    if(this.props.location){
+      await this.setState({ recipe: this.props.location.state.recipe });
+    }
   };
 
-  handleGetRecipesByIngredients = (titleSimilar, ingredientsSimilar) => {
+  handleGetRecipesByIngredients = async (titleSimilar, ingredientsSimilar) => {
     const {
       location: { state: { recipe: { title, ingredients } = {} } = {} } = {}
     } = this.props;
@@ -59,7 +51,7 @@ class RecipePage extends Component {
       ? ingredientsSimilar
       : ingredients;
 
-    getRecipesByIngredients(titleParam, ingredientsParam)
+   await getRecipesByIngredients(titleParam, ingredientsParam)
       .then(response => {
         this.setState({ similarRecipes: response.results });
       })
