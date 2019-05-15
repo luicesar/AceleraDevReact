@@ -9,8 +9,8 @@ const getRecipesByIngredients = async (name, ingredients, page = 1) => {
 
 const getRecipesByName = async (name = "", page = 1) => {
   const searchUrl = name === "" ? API_PATH : `${API_PATH}?q=${name}&p=${page}`;
-  const result = await axios.get(searchUrl);
-  return result.data;
+   const result = await axios.get(searchUrl);
+   return result.data;
 };
 
 export { getRecipesByIngredients, getRecipesByName };
