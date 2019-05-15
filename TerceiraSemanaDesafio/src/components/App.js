@@ -4,7 +4,11 @@ import Navbar from "./Navbar";
 import Home from "./Home";
 import RecipePage from "./RecipePage";
 
+//const HomeRoute = ({ props, match }) => ( <Home {...props} searchString={(match && match.params.searchString) || ''} /> );
 const HomeRoute = props => <Home {...props} />;
+// const HomeRoute = ({ match }) => (
+//   <Home searchString={(match && match.params.searchString) || ''} />
+//   );
 const RecipePageRoute = props => <RecipePage {...props} />;
 
 class App extends Component {
@@ -21,6 +25,7 @@ class App extends Component {
           <div className="container mt-10">
             <Route exact path="/" component={HomeRoute} />
             <Route exact path="/search/:searchString" component={HomeRoute} />
+            {/* <Route path="/search/:searchString?" component={HomeRoute} /> */}
             <Route path="/recipe/:slugify" component={RecipePageRoute} />
           </div>
         </div>

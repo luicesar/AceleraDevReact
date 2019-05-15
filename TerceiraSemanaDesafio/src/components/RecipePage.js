@@ -51,13 +51,9 @@ class RecipePage extends Component {
       ? ingredientsSimilar
       : ingredients;
 
-   await getRecipesByIngredients(titleParam, ingredientsParam)
-      .then(response => {
-        this.setState({ similarRecipes: response.results });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      
+    const dados =  await getRecipesByIngredients(titleParam, ingredientsParam);
+    this.setState({ similarRecipes: dados });
   };
 
   render() {

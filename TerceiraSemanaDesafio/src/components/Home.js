@@ -20,20 +20,31 @@ class Home extends Component {
     this._isMounted = false;
   }
 
-  async handleGetRecipesByName(value) {
-    await getRecipesByName(value)
-      .then(response => {
-        if (this._isMounted) {
-          this.setState({ recipes: response.results });
-        }
-      })
-      .catch(err => {
-        console.log("Error: ", err);
-      });
+  handleGetRecipesByName = async (value) => {
+
+    const dados = await getRecipesByName(value);
+    if (this._isMounted)
+      this.setState({ recipes: dados });
   }
 
-
   handleGetRecipesByIngredients = async (page, pagination) => {
+
+    let searchString = "";
+    if (this.props.match && this.props.match.params) {
+      searchString = this.props.match.params.searchString;
+      console.log("this.props.match.params.searchString: ", this.props.match.params.searchString);
+    }
+
+    if (pagination === "prev")
+      this.setState({ page: page - 1 });
+    else
+      this.setState({ page: page + 1 });
+
+    const dados = await getRecipesByName(searchString, this.state.page);
+    this.setState({ recipes: dados, searchString: searchString });
+  };
+
+  handleGetRecipesByIngredientsOld = async (page, pagination) => {
 
     const {
       match: { params: { searchString } } = {}
@@ -46,13 +57,8 @@ class Home extends Component {
     else
       this.setState({ page: page + 1 });
 
-    await getRecipesByIngredients(searchString, ingredientsFilter, this.state.page)
-      .then(response => {
-        this.setState({ recipes: response.results });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const dados = await getRecipesByIngredients(searchString, ingredientsFilter, this.state.page);
+    this.setState({ recipes: dados });
   };
 
   onchangeInputNav = e => {
@@ -108,7 +114,7 @@ class Home extends Component {
             ))}
         </div>
         <div className="d-flex justify-content-center">
-          {searchString && (
+          {(
             <nav>
               <ul className="pagination">
                 <li className="page-item">
