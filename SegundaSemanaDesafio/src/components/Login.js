@@ -9,11 +9,24 @@ class Login extends Component {
       password: "",
       username: ""
     };
+
+    this.handleLoginChange = this.handleLoginChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+  };
+
+  handleLoginChange = async event => {
+    const { value } = event.target;
+    await this.setState({ ...this.state, username: value });
+  };
+
+  handlePasswordChange = async event => {
+    const { value } = event.target;
+    await this.setState({ ...this.state, password: value });
   };
 
   handleLogin = event => {
@@ -47,7 +60,7 @@ class Login extends Component {
     const { username, password } = this.state;
 
     return (
-      <form className="form-signin" onSubmit={this.handleSubmit}>
+      <form className="form-signin" onSubmit={this.handleSubmit.bind(this)}>
         <div className="text-center mb-4">
           <h1 className="h3 mb-3 font-weight-normal">Login / Register</h1>
         </div>
@@ -56,7 +69,7 @@ class Login extends Component {
           <label htmlFor="inputEmail">Username</label>
           <input
             name="username"
-            onChange={this.handleChange}
+            onChange={this.handleLoginChange}
             value={username}
             className="form-control"
             placeholder="Username"
@@ -68,7 +81,7 @@ class Login extends Component {
           <label htmlFor="inputPassword">Password</label>
           <input
             name="password"
-            onChange={this.handleChange}
+            onChange={this.handlePasswordChange}
             value={password}
             type="password"
             className="form-control"
