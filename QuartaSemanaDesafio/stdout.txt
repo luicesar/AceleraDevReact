@@ -1,0 +1,4 @@
+
+> marvel-app@0.1.0 test C:\Users\Cesar\codenation\react-4
+> cross-env CI=true react-scripts test --env=jsdom
+
